@@ -10,6 +10,7 @@ cloudinary = "*"
 python-decouple = "*"
 whitenoise = "*"
 gunicorn = "*"
+psycopg2 = "*"
 
 [dev-packages]
 
