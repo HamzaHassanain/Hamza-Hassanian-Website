@@ -4,11 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+django = "==3.2.1"
 django-jazzmin = "*"
 cloudinary = "*"
 python-decouple = "*"
 whitenoise = "*"
+gunicorn = "*"
 
 [dev-packages]
 
