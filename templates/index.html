@@ -77,51 +77,30 @@
 
 <!-- Experience -->
 <div class="ds-experience-section">
+  {% for experience in experiences %}
   <div class="container">
-    <h2 class="ds-heading">Work Experience</h2>
+    <h2 class="ds-heading">{{experience.name | safe}}</h2>
     <div class="row ds-experience-list">
+      {% for experience_item in experience.experience_items %}
       <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
         <section>
-          <span class="ds-year">2019 - Present</span>
-          <h3 class="ds-officename">Matrix Media Inc</h3>
-          <span class="ds-department">Full Stack developer</span>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis
-            sem maximus, ornare metus ut, congue enim. Sed fermentum.
-          </p>
-          <ul>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis
-              sem maximus, ornare metus ut.
-            </li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          </ul>
+          <span class="ds-year"
+            >{{ experience_item.start_date | safe }} -
+            <span style="display: inline">
+              {{ experience_item.end_date | safe }}</span
+            >
+          </span>
+          <h3 class="ds-officename">{{ experience_item.title | safe }}</h3>
+          <span class="ds-department">
+            {{ experience_item.subtitle | safe }}
+          </span>
+          <p>{{ experience_item.description | safe }}</p>
         </section>
       </div>
-      <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-        <section>
-          <span class="ds-year">2018 - 2019</span>
-          <h3 class="ds-officename">Lexind</h3>
-          <span class="ds-department">Senior app developer</span>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis
-            sem maximus, ornare metus ut, congue enim. Sed fermentum.
-          </p>
-          <ul>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis
-              sem maximus, ornare metus ut.
-            </li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis
-              sem maximus, ornare metus ut.
-            </li>
-          </ul>
-        </section>
-      </div>
+      {% endfor %}
     </div>
   </div>
+  {% endfor %}
 </div>
 <!-- Experience -->
 

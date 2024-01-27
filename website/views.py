@@ -1,18 +1,15 @@
 from django.shortcuts import render
 from hero.models import Hero, BladeIcon
 from skills.models import SkillsCategory, Skill
+from experience.models import ExperienceCategory, Experience
 # Create your views here.
-def index(request):
+
+def load_hero():
     if Hero.objects.count() == 0:
         created_hero = Hero(slug="hamza-hassanain", small_title="Hamza Hassanain", big_title="Software Engineer")
         created_hero.save()
 
-
-
     hero_object = Hero.objects.all()[0]
-    blade_icons_objects = BladeIcon.objects.all()
-    links = []
-    skills = []
     hero = {
         "slug": hero_object.slug,
         "small_title": hero_object.small_title,
@@ -21,6 +18,11 @@ def index(request):
         "image": hero_object.image,
         "resume_url": hero_object.resume_url,
     }
+
+    return hero
+def load_links():
+    links = []
+    blade_icons_objects = BladeIcon.objects.all()
     for blade_icon in blade_icons_objects:
         link = {
             "name": blade_icon.name,
@@ -28,8 +30,10 @@ def index(request):
             "blade_icon_code": blade_icon.blad_icon_code,
         }
         links.append(link)
-
-    skills_categories = SkillsCategory.objects.all()
+    return links
+def load_skills():
+    skills = []
+    skills_categories = SkillsCategory.objects.all().order_by('priority')
     for skills_category in skills_categories:
         skill_items = []
         skills_objects = Skill.objects.filter(category_id=skills_category.id)
@@ -43,10 +47,38 @@ def index(request):
             "skill_items": skill_items,
         }
         skills.append(skills_category)
+    return skills
+
+def load_experience():
+    experiences = []
+    experience_categories = ExperienceCategory.objects.all().order_by('priority')
+    for experience_category in experience_categories:
+        experience_items = []
+        experience_objects = Experience.objects.filter(category_id=experience_category.id)
+        for experience_object in experience_objects:
+            experience_item = {
+                "name": experience_object.name,
+                "title": experience_object.title,
+                "subtitle": experience_object.subtitle,
+                "description": experience_object.description,
+                "start_date": experience_object.start_date,
+                "end_date": experience_object.end_date,
+            }
+            experience_items.append(experience_item)
+        experience_category = {
+            "name": experience_category.name,
+            "experience_items": experience_items,
+        }
+        experiences.append(experience_category)
+    return experiences
+
+def index(request):
+   
     context = {
         "title": "Hamza - Home",
-        "links": links,
-        "hero": hero,
-        "skills": skills,
+        "links": load_links(),
+        "hero": load_hero(),
+        "skills": load_skills(),
+        "experiences": load_experience(),
     }
     return render(request, "index.html" , context)
