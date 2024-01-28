@@ -28,7 +28,7 @@ def load_links():
         link = {
             "name": blade_icon.name,
             "link": blade_icon.link,
-            "blade_icon_code": blade_icon.blad_icon_code,
+            "blade_icon_code": blade_icon.icon_code,
         }
         links.append(link)
     return links
