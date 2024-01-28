@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'personal_projects.apps.PersonalProjectsConfig',
     'skills.apps.SkillsConfig',
     'experience.apps.ExperienceConfig',
-    'apis.apps.ApisConfig',
-
+    'photos.apps.PhotosConfig',
 ]
 
 MIDDLEWARE = [
