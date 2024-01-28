@@ -6,7 +6,7 @@ import cloudinary
 class BladeIcon(models.Model):
     link=models.CharField(max_length=200)
     name=models.CharField(max_length=100)
-    blad_icon_code=models.CharField(max_length=100)
+    blade_icon_code=models.CharField(max_length=100)
     hero_id=models.ForeignKey('Hero', on_delete=models.CASCADE)
 
     def __str__(self):
