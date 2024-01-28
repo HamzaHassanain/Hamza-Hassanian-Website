@@ -55,7 +55,7 @@ def load_experience():
     experience_categories = ExperienceCategory.objects.all().order_by('priority')
     for experience_category in experience_categories:
         experience_items = []
-        experience_objects = Experience.objects.filter(category_id=experience_category.id)
+        experience_objects = Experience.objects.filter(category_id=experience_category.id).order_by('priority')
         for experience_object in experience_objects:
             experience_item = {
                 "name": experience_object.name,
