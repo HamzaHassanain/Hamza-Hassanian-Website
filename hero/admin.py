@@ -6,8 +6,9 @@ class InlineBladeIcon(admin.TabularInline):
     extra = 1
 
 class HeroAdmin(admin.ModelAdmin):
-    list_display = ("slug", "small_title", "big_title")
+    list_display = ("slug", "small_title")
     inlines = [InlineBladeIcon]
+
 
 # change admin site title
 admin.site.site_header = "Hamza Hassanain"

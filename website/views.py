@@ -2,6 +2,7 @@ from django.shortcuts import render
 from hero.models import Hero, BladeIcon
 from skills.models import SkillsCategory, Skill
 from experience.models import ExperienceCategory, Experience
+from personal_projects.models import PersonalProject
 # Create your views here.
 
 def load_hero():
@@ -72,6 +73,21 @@ def load_experience():
         experiences.append(experience_category)
     return experiences
 
+def load_personal_projects():
+    personal_projects = []
+    personal_projects_objects = PersonalProject.objects.all().order_by('priority')
+    for personal_project_object in personal_projects_objects:
+        personal_project = {
+            "name": personal_project_object.name,
+            "title": personal_project_object.title,
+            "slug": personal_project_object.slug,
+            "small_description": personal_project_object.small_description,
+            "description": personal_project_object.description,
+            "thumbnail": personal_project_object.thumbnail,
+        }
+        personal_projects.append(personal_project)
+    return personal_projects
+
 def index(request):
    
     context = {
@@ -80,5 +96,25 @@ def index(request):
         "hero": load_hero(),
         "skills": load_skills(),
         "experiences": load_experience(),
+        "personal_projects": load_personal_projects(),
     }
     return render(request, "index.html" , context)
+
+
+def single_project(request, slug):
+    personal_project = PersonalProject.objects.get(slug=slug)
+    parsed_project = {
+        "name": personal_project.name,
+        "title": personal_project.title,
+        "slug": personal_project.slug,
+        "small_description": personal_project.small_description,
+        "description": personal_project.description,
+        "thumbnail": personal_project.thumbnail,
+    }
+    context = {
+        "title": "Hamza - " + parsed_project['name'],
+        "links": load_links(),
+        "project": parsed_project,
+    }
+    print(context['links'])
+    return render(request, "works-setails.html" , context)

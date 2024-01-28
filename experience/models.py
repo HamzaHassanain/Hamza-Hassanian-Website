@@ -19,6 +19,6 @@ class Experience(models.Model):
     start_date=models.CharField(max_length=100)
     end_date=   models.CharField(max_length=100)
     category_id=models.ForeignKey('ExperienceCategory', on_delete=models.CASCADE)
-
+    priority=models.IntegerField(default=0)
     def __str__(self):
         return self.name

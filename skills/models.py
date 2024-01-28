@@ -15,6 +15,7 @@ class Skill(models.Model):
     name=models.CharField(max_length=100)
     # description=models.TextField(blank=True)
     category_id=models.ForeignKey('SkillsCategory', on_delete=models.CASCADE)
+    priority=models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
