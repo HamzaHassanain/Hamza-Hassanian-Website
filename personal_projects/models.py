@@ -20,4 +20,4 @@ class PersonalProject(models.Model):
     priority=models.IntegerField(default=0)
     thumbnail=CloudinaryField('image',blank=True)
     def __str__(self):
-        return self.name
+        return self.title
