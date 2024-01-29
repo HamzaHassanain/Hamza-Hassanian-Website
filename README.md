@@ -13,7 +13,7 @@
 
 ## Description
 
-This is a Resume Website that I created to showcase my skills and projects. It is a single page website that is responsive and mobile friendly. It is Built with python Django, used Django Admin Panel to manage the content of the website. It is hosted on OnRender.
+This is a Resume Website that I created to showcase my skills and projects. It website that is responsive and mobile friendly. It is Built with python Django, used Django Admin Panel to manage the content of the website. It is hosted on OnRender.
 
 I also used PostgreSQL database to store the data of the website. I used Cloudinary to store the images and media files.
 
