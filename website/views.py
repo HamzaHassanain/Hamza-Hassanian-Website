@@ -18,10 +18,11 @@ def load_hero():
         "small_title": hero_object.small_title,
         "big_title": hero_object.big_title,
         "about_me": hero_object.about_me,
-        "image": hero_object.image,
+        "image_url": hero_object.image.url,
         "resume_url": hero_object.resume_url,
     }
-
+    # update image url to have https
+    hero['image_url'] = hero['image_url'].replace('http://', 'https://')
     return hero
 
 def load_meta_tags():
@@ -30,17 +31,20 @@ def load_meta_tags():
         created_meta_tags.save()
 
     meta_tags_object = MetaTags.objects.all()[0]
+    
     meta_tags = {
         "title": meta_tags_object.title,
         "description": meta_tags_object.description,
         "keywords": meta_tags_object.keywords,
         "author": meta_tags_object.author,
-        "image": meta_tags_object.image,
+        "image_url": meta_tags_object.image.url,
         "url": meta_tags_object.url,
         "site_name": meta_tags_object.site_name,
         "type": meta_tags_object.type,
         "twitter_creator": meta_tags_object.twitter_creator,
     }
+    # update image url to have https
+    meta_tags['image_url'] = meta_tags['image_url'].replace('http://', 'https://')
 
     return meta_tags
 def load_links():
@@ -105,9 +109,12 @@ def load_personal_projects():
             "slug": personal_project_object.slug,
             "small_description": personal_project_object.small_description,
             "description": personal_project_object.description,
-            "thumbnail": personal_project_object.thumbnail,
+            "thumbnail_url": personal_project_object.thumbnail.url,
         }
+        # update thumbnail url to have https
+        personal_project['thumbnail_url'] = personal_project['thumbnail_url'].replace('http://', 'https://')
         personal_projects.append(personal_project)
+
     return personal_projects
 
 def index(request):
@@ -132,8 +139,10 @@ def single_project(request, slug):
         "slug": personal_project.slug,
         "small_description": personal_project.small_description,
         "description": personal_project.description,
-        "thumbnail": personal_project.thumbnail,
+        "thumbnail_url": personal_project.thumbnail.url,
     }
+    # update thumbnail url to have https
+    parsed_project['thumbnail_url'] = parsed_project['thumbnail_url'].replace('http://', 'https://')
     context = {
         "title": "Hamza - " + parsed_project['name'],
         "links": load_links(),
