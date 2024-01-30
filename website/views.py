@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from hero.models import Hero, BladeIcon
+from metatags.models import MetaTags
 from skills.models import SkillsCategory, Skill
 from experience.models import ExperienceCategory, Experience
 from personal_projects.models import PersonalProject
+
 # Create your views here.
 
 def load_hero():
@@ -21,6 +23,26 @@ def load_hero():
     }
 
     return hero
+
+def load_meta_tags():
+    if MetaTags.objects.count() == 0:
+        created_meta_tags = MetaTags()
+        created_meta_tags.save()
+
+    meta_tags_object = MetaTags.objects.all()[0]
+    meta_tags = {
+        "title": meta_tags_object.title,
+        "description": meta_tags_object.description,
+        "keywords": meta_tags_object.keywords,
+        "author": meta_tags_object.author,
+        "image": meta_tags_object.image,
+        "url": meta_tags_object.url,
+        "site_name": meta_tags_object.site_name,
+        "type": meta_tags_object.type,
+        "twitter_creator": meta_tags_object.twitter_creator,
+    }
+
+    return meta_tags
 def load_links():
     links = []
     blade_icons_objects = BladeIcon.objects.all()
@@ -97,6 +119,7 @@ def index(request):
         "skills": load_skills(),
         "experiences": load_experience(),
         "personal_projects": load_personal_projects(),
+        "metatags": load_meta_tags(),
     }
     return render(request, "index.html" , context)
 
@@ -114,6 +137,7 @@ def single_project(request, slug):
     context = {
         "title": "Hamza - " + parsed_project['name'],
         "links": load_links(),
+        "metatags": load_meta_tags(),
         "project": parsed_project,
     }
     print(context['links'])

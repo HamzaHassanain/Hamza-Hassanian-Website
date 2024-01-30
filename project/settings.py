@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'skills.apps.SkillsConfig',
     'experience.apps.ExperienceConfig',
     'photos.apps.PhotosConfig',
+    'metatags.apps.MetatagsConfig',
 ]
 
 MIDDLEWARE = [

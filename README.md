@@ -13,7 +13,7 @@
 
 ## Description
 
-This is a Resume Website that I created to showcase my skills and projects. It website that is responsive and mobile friendly. It is Built with python Django, used Django Admin Panel to manage the content of the website. It is hosted on OnRender.
+This is a Resume Website that I created to showcase my skills and projects. It website that is responsive and mobile friendly and SEO friendly (Done by using meta tags) . It is Built with python Django, used Django Admin Panel to manage the content of the website. It is hosted on OnRender.
 
 I also used PostgreSQL database to store the data of the website. I used Cloudinary to store the images and media files.
 
@@ -43,6 +43,8 @@ HTML CSS Template From <a href="https://designstub.com/" target="_blank">Designs
   - <strong> hero: </strong> This is the app that contains the information about the hero section of the website and the links on the navbar.
     - <strong> Hero: </strong> This is the model that contains the information about the hero section. NOTE: There can only be one hero section, if you try to add another one, it will throw an error.
     - <strong> BladeIcon: </strong> This is the model responsible for the links on the navbar. NOTE: The template uses the blade icons <a herf="https://blade-ui-kit.com/blade-icons#search" traget="_balnk"> icons library </a>, to use it, you copy the name of the icon and paste it in the icon field in the admin panel. For the icon to work it has to start with <code>ri</code>
+  - <strong> metatags: </strong> This app is responsible for the meta tags of the website, To make the website more SEO friendly.
+    - <strong> MetaTags: </strong> This is the model that contains the information about the meta tags.
   - <strong> personal_projects: </strong> This is the app that contains the information about the personal projects.
     - <strong> PersonalProject: </strong> This is the model that contains the information about the personal projects.
   - <strong> skills: </strong> This is the app that contains the information about the skills.
